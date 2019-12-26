@@ -16,7 +16,7 @@ onready var unkown = get_node("unknown")
 onready var actual_inventory = get_node("inventoryOpen")
 
 
-
+onready  var Main_Controller = get_node("/root/Main_Controller")
 
 
 
@@ -52,6 +52,7 @@ func _process(delta):
 			
 func handle_menu_selected(name):
 	if selected == name:
+		Main_Controller.set_menu_selected(false)
 		for i in len(menu_item):
 			if menu_item[i].name == name:
 				menu_item[i].set_frame(0)
@@ -60,6 +61,7 @@ func handle_menu_selected(name):
 		selected = ""
 		delta_time = 0
 	else:
+		Main_Controller.set_menu_selected(true)
 		if get_node(name+"Open") != null:
 			get_node(name+"Open").visible = true
 		delta_time = 0				
